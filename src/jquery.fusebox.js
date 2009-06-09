@@ -4,6 +4,7 @@
     if($(this).length == 0) { return; }
     
     $.fusebox.container.initialize();
+    $("a.fusebox-target").live("click", $.fusebox.bindings.click);
     
     return this.each(function(index) {
       var $anchor = $(this),
@@ -21,9 +22,8 @@
       });
       
       if(typeof($associatedElement) == "undefined") { return; }
-      
       $.fusebox.container.append($associatedElement);
-      $anchor.click($.fusebox.bindings.click);
+      $anchor.addClass("fusebox-target");
     });
   };
 })(jQuery);
