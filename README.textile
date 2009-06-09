@@ -1,10 +1,6 @@
 h1. Fusebox
 
-A super-lightweight (less than 100 LOC) lightbox-esque jQuery plugin (with jQuery UI support!)
-
-h2. jQuery UI is not Supported (YET)
-
-This is alpha software.  Once I figure out how to use jQuery UI, you can bet I'll have additional classes in here to get the fancy-pants styles that everyone drools over.  For now, you'll have to wait.
+A super-lightweight lightbox-esque jQuery plugin (with jQuery UI support)
 
 h2. Why?
 
@@ -16,7 +12,7 @@ It only supports inline content because that's all I ever really need.  This may
 
 h2. Ways and Means
 
-It -uses-+requires+ jQuery 1.3.2 (well, not now, but eventually) due to jQuery's awesome @live@ function.
+It -uses- +requires+ jQuery 1.3.2 (well, not now, but eventually) due to jQuery's awesome @live@ function.
 
 h2. Complaints, Problems, or Ideas?
 
