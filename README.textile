@@ -1,6 +1,6 @@
 h1. Fusebox
 
-A super-lightweight (<100 LOC) lightbox-esque jQuery plugin (with jQuery UI support!)
+A super-lightweight (less than 100 LOC) lightbox-esque jQuery plugin (with jQuery UI support!)
 
 h2. jQuery UI is not Supported (YET)
 
