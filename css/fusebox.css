@@ -1,0 +1,8 @@
+.fusebox-container {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background: #eee;
+}
+
+.fusebox { display: none; width: 400px; }

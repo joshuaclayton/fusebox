@@ -1,0 +1,94 @@
+(function($) {
+  $.fusebox = {};
+  $.fn.fusebox = function(selector) {
+    if($(this).length == 0) { return; }
+    
+    $.fusebox.container.initialize();
+    
+    return this.each(function(index) {
+      var $anchor = $(this),
+          cssClasses = $anchor.attr("class").split(/ /),
+          $associatedElement,
+          fuseboxSelector;
+      
+      $.each(cssClasses, function(idx, cssClass) {
+        fuseboxSelector = ".fusebox-" + cssClass;
+        if($(fuseboxSelector).length == 1) {
+          $anchor.data("fusebox-target-selector", fuseboxSelector);
+          $associatedElement = $(fuseboxSelector);
+          return false;
+        }
+      });
+      
+      if(typeof($associatedElement) == undefined) { return; }
+      
+      $.fusebox.container.append($associatedElement);
+      $anchor.click($.fusebox.bindings.click);
+    });
+  };
+})(jQuery);
+(function($) {
+  var displayFuseboxContents = function(selector) {
+    $(".fusebox-container")
+      .children(".fusebox").hide().end()  // hide all children
+      .find(selector).show().end()        // display current selector
+      .fadeIn("slow")                     // display .fusebox-container
+      .css("left", $(window).width()/2 - ($(".fusebox-container").width()/2)); // position correctly
+  };
+  
+  $.fusebox.container = {
+    initialize: function() {
+      if($(".fusebox-container").length > 0) { return; }
+      $("body").append($("<div>").addClass("fusebox-container"));
+    },
+    append: function(element) {
+      $(".fusebox-container").append(element);
+    },
+    show: function(selector) {
+      $(document).trigger("beforeShow.fusebox");
+      
+      if($(".fusebox-container").is(":visible")) {
+        $(".fusebox-container").fadeOut("slow", function() {
+          displayFuseboxContents(selector);
+        });
+      } else {
+        $(".fusebox-container").hide();
+        displayFuseboxContents(selector);
+      }
+      
+      $(document).trigger("show.fusebox").trigger("afterShow.fusebox");
+    },
+    hide: function() {
+      $(document).trigger("beforeHide.fusebox");
+      $(".fusebox-container").fadeOut("slow");
+      $(document).trigger("hide.fusebox").trigger("afterHide.fusebox");
+    }
+  };
+})(jQuery);
+(function($) {
+  $.extend($.fusebox, {
+    close: function() {
+      $(document).trigger("close.fusebox");
+      return false;
+    },
+    bindings: {
+      close: function() {
+        $(document).unbind("keydown.fusebox");
+        $.fusebox.container.hide();
+      },
+      keydown: function(event) {
+        if (event.keyCode == 27) { $.fusebox.close(); }
+        return true;
+      },
+      click: function() {
+        $(document).bind("keydown.fusebox", $.fusebox.bindings.keydown);
+        $(document).trigger("loading.fusebox");
+        
+        if(typeof($(this).data("fusebox-target-selector")) == undefined) { return; }
+        $.fusebox.container.show($(this).data("fusebox-target-selector"));
+        return false;
+      }
+    }
+  });
+  $(document).bind("close.fusebox", $.fusebox.bindings.close);
+})(jQuery);

@@ -1,0 +1,23 @@
+h1. Fusebox
+
+A super-lightweight (<100 LOC) lightbox-esque jQuery plugin (with jQuery UI support!)
+
+h2. jQuery UI is not Supported (YET)
+
+This is alpha software.  Once I figure out how to use jQuery UI, you can bet I'll have additional classes in here to get the fancy-pants styles that everyone drools over.  For now, you'll have to wait.
+
+h2. Why?
+
+"Facebox":http://github.com/defunkt/facebox wasn't carrying over my event bindings and was oftentimes too heavy.  The idea here is to keep it braindead simple.
+
+h2. Caveats!
+
+It only supports inline content because that's all I ever really need.  This may eventually support images, but we'll see.  If it does, it won't be for slideshows or anything complex; just a bigger version of whatever the user clicked on.
+
+h2. Ways and Means
+
+It -uses-+requires+ jQuery 1.3.2 (well, not now, but eventually) due to jQuery's awesome @live@ function.
+
+h2. Complaints, Problems, or Ideas?
+
+If there's a problem, let me know.  If it's a feature request, most likely I won't code for it unless I've actually needed it myself.  If there's a legitimate way to improve the library (whether it be a better write Javascript or a better usage of what jQuery has to offer), *definitely* let me know.  I'm not really a Javascript hacker, so there are bound to be improvements just itching to get written.
