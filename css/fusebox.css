@@ -4,5 +4,5 @@
   left: 0;
 }
 
-.fusebox { display: none; padding: 10px; }
-.fusebox-container .ui-widget-shadow { position: absolute; z-index: -1;}
+.fusebox { display: none; padding: 10px; z-index: 101; float: left; }
+.fusebox-container .ui-widget-shadow { position: absolute; z-index: 100;}
