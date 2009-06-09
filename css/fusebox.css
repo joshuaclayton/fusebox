@@ -1,8 +1,7 @@
 .fusebox-container {
   position: absolute;
   top: 40px;
-  left: 0;
 }
 
-.fusebox { display: none; padding: 10px; z-index: 101; float: left; }
-.fusebox-container .ui-widget-shadow { position: absolute; z-index: 100;}
+.fusebox-container .ui-widget-shadow { position: absolute; z-index: 3; }
+.fusebox { display: none; padding: 10px; z-index: 4; position: relative; float: left; }

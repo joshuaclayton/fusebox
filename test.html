@@ -22,6 +22,9 @@
       });
     </script>
     <style type="text/css">
+      body {
+        background: #fdd;
+      }
       .col-12 {
         width: 650px;
       }
@@ -43,13 +46,19 @@
     
     <a href="index.html" rel="fusebox" class="item-list-2 clean">This is secondary content</a>
     <div class="fusebox-item-list-2 col-12">
-      <ul>
-        <li>another</li>
-        <li>another</li>
-        <li>another</li>
-        <li>another</li>
-      </ul>
-      <h1 class="bound-event">This should still be bound correctly</h1>
+      <div style="float: left">
+        <h2>This is float: left;</h2>
+        <ul>
+          <li>another</li>
+          <li>another</li>
+          <li>another</li>
+          <li>another</li>
+        </ul>
+        <h1 class="bound-event">This should still be bound correctly</h1>
+        <div style="float: right;">
+          <h3>This is float: right;</h3>
+        </div>
+      </div>
       <p class="fusebox-close">Close</p>
     </div>
   </body>
