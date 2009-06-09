@@ -9,9 +9,9 @@
   };
   
   var correctShadow = function() {
-    var sumAttributeValues = function(array) {
+    var sumAttributeValues = function(attributeArray) {
       var sum = 0;
-      $.each(array, function(idx, attribute) {
+      $.each(attributeArray, function(idx, attribute) {
         sum += parseFloat(currentFusebox.css(attribute));
       });
       return sum;

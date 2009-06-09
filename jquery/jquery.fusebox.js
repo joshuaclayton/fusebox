@@ -20,7 +20,7 @@
         }
       });
       
-      if(typeof($associatedElement) == undefined) { return; }
+      if(typeof($associatedElement) == "undefined") { return; }
       
       $.fusebox.container.append($associatedElement);
       $anchor.click($.fusebox.bindings.click);
@@ -38,9 +38,9 @@
   };
   
   var correctShadow = function() {
-    var sumAttributeValues = function(array) {
+    var sumAttributeValues = function(attributeArray) {
       var sum = 0;
-      $.each(array, function(idx, attribute) {
+      $.each(attributeArray, function(idx, attribute) {
         sum += parseFloat(currentFusebox.css(attribute));
       });
       return sum;
@@ -106,7 +106,7 @@
         $(document).bind("keydown.fusebox", $.fusebox.bindings.keydown);
         $(document).trigger("loading.fusebox");
         
-        if(typeof($(this).data("fusebox-target-selector")) == undefined) { return; }
+        if(typeof($(this).data("fusebox-target-selector")) == "undefined") { return; }
         $.fusebox.container.show($(this).data("fusebox-target-selector"));
         return false;
       }

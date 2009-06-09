@@ -20,7 +20,7 @@
         }
       });
       
-      if(typeof($associatedElement) == undefined) { return; }
+      if(typeof($associatedElement) == "undefined") { return; }
       
       $.fusebox.container.append($associatedElement);
       $anchor.click($.fusebox.bindings.click);
