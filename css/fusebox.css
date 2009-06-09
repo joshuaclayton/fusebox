@@ -1,8 +1,8 @@
 .fusebox-container {
   position: absolute;
-  top: 20px;
+  top: 40px;
   left: 0;
-  background: #eee;
 }
 
-.fusebox { display: none; width: 400px; }
+.fusebox { display: none; padding: 10px; }
+.fusebox-container .ui-widget-shadow { position: absolute; z-index: -1;}
