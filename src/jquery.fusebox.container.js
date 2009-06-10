@@ -27,19 +27,16 @@
   $.fusebox.container = {
     initialize: function() {
       if($(".fusebox-container").length > 0) { return; }
-      $("body").append($("<div>").addClass("fusebox-container").css({display: "none"}).append($("<div>").addClass("ui-widget-shadow")));
+      $("body").append($("<div class='fusebox-container'>").append($("<div class='ui-widget-shadow'>")));
     },
     append: function(element) {
       var transform = arguments[1] || function(element) { 
-        return $("<div>")
-          .addClass("fusebox ui-widget-content")
-          .append(element);
+        return $("<div class='fusebox ui-widget-content'>").append(element);
       };
       $(".fusebox-container").append(transform(element));
     },
     show: function(selector) {
       $(document).trigger("beforeShow.fusebox");
-      
       if($(".fusebox-container").is(":visible")) {
         $(".fusebox-container").fadeOut("slow", function() {
           displayFuseboxContents(selector);
@@ -48,7 +45,6 @@
         $(".fusebox-container").hide();
         displayFuseboxContents(selector);
       }
-      
       $(document).trigger("show.fusebox").trigger("afterShow.fusebox");
     },
     hide: function() {
