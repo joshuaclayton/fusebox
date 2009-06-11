@@ -16,7 +16,6 @@
       click: function() {
         $(document).bind("keydown.fusebox", $.fusebox.bindings.keydown);
         $(document).trigger("loading.fusebox");
-        
         if(typeof($(this).data("fusebox-target-selector")) == "undefined") { return; }
         $.fusebox.container.show($(this).data("fusebox-target-selector"));
         return false;
@@ -59,23 +58,6 @@
       .find(".fusebox:has(" + selector + ")").show().end()  // display current selector
       .fadeIn("slow")                                       // display .fusebox-container
       .css("left", $(window).width()/2 - ($(".fusebox-container").width()/2)); // position correctly
-    correctShadow();
-  };
-  
-  var correctShadow = function() {
-    var sumAttributeValues = function(attributeArray) {
-      var sum = 0;
-      $.each(attributeArray, function(idx, attribute) {
-        sum += parseFloat(currentFusebox.css(attribute));
-      });
-      return sum;
-    };
-    
-    var currentFusebox = $(".fusebox-container .fusebox:visible"),
-        transformWidth = currentFusebox.width() + sumAttributeValues(["border-left-width", "border-right-width", "padding-left", "padding-right"]),
-        transformHeight = currentFusebox.height() + sumAttributeValues(["border-top-width", "border-bottom-width", "padding-top", "padding-bottom"]);
-    
-    $(".fusebox-container .ui-widget-shadow").css({width: transformWidth, height: transformHeight});
   };
   
   $.fusebox.container = {

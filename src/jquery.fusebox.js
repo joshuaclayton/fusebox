@@ -16,7 +16,6 @@
       click: function() {
         $(document).bind("keydown.fusebox", $.fusebox.bindings.keydown);
         $(document).trigger("loading.fusebox");
-        
         if(typeof($(this).data("fusebox-target-selector")) == "undefined") { return; }
         $.fusebox.container.show($(this).data("fusebox-target-selector"));
         return false;
