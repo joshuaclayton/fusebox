@@ -10,18 +10,15 @@
   $.fusebox.container = {
     initialize: function() {
       if($(".fusebox-container").length > 0) { return; }
-      $("body").append($("<div class='fusebox-container'>").append($("<div class='ui-widget-shadow'>")));
+      $("body").append($("<div class='fusebox-container'><div class='ui-widget-shadow'></div></div>"));
     },
     append: function(element) {
-      var transform = arguments[1] || function(element) { 
-        return $("<div class='fusebox ui-widget-content'>").append(element);
-      };
-      $(".fusebox-container").append(transform(element));
+      $(".fusebox-container").append($("<div class='fusebox ui-widget-content'>").append(element));
     },
     show: function(selector) {
       $(document).trigger("beforeShow.fusebox");
       if($(".fusebox-container").is(":visible")) {
-        $(".fusebox-container").fadeOut("slow", function() {
+        $(".fusebox-container").fadeOut("slow", function() { 
           displayFuseboxContents(selector);
         });
       } else {

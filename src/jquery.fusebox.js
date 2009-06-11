@@ -10,14 +10,13 @@
         $.fusebox.container.hide();
       },
       keydown: function(event) {
-        if (event.keyCode == 27) { $.fusebox.close(); }
+        if(event.keyCode == 27) { $.fusebox.close(); }
         return true;
       },
       click: function() {
-        $(document).bind("keydown.fusebox", $.fusebox.bindings.keydown);
-        $(document).trigger("loading.fusebox");
-        if(typeof($(this).data("fusebox-target-selector")) == "undefined") { return; }
-        $.fusebox.container.show($(this).data("fusebox-target-selector"));
+        $(document).bind("keydown.fusebox", $.fusebox.bindings.keydown).trigger("loading.fusebox");
+        if(typeof($(this).data("fuseboxTargetSelector")) == "undefined") { return; }
+        $.fusebox.container.show($(this).data("fuseboxTargetSelector"));
         return false;
       }
     }
@@ -30,14 +29,12 @@
     $("a.fusebox-target").live("click", $.fusebox.bindings.click);
     
     return this.each(function(index) {
-      var $anchor = $(this),
-          $associatedElement,
-          fuseboxSelector;
+      var $anchor = $(this), $associatedElement, fuseboxSelector;
       
       $.each($anchor.attr("class").split(/ /), function(idx, cssClass) {
         fuseboxSelector = ".fusebox-" + cssClass;
         if($(fuseboxSelector).length == 1) {
-          $anchor.data("fusebox-target-selector", fuseboxSelector);
+          $anchor.data("fuseboxTargetSelector", fuseboxSelector);
           $associatedElement = $(fuseboxSelector);
           return false;
         }
@@ -50,4 +47,40 @@
   };
   
   $(document).bind("close.fusebox", $.fusebox.bindings.close);
+})(jQuery);
+(function($) {
+  var displayFuseboxContents = function(selector) {
+    $(".fusebox-container")
+      .children(".fusebox").hide().end()                    // hide all children
+      .find(".fusebox:has(" + selector + ")").show().end()  // display current selector
+      .fadeIn("slow")                                       // display .fusebox-container
+      .css("left", $(window).width()/2 - ($(".fusebox-container").width()/2)); // position correctly
+  };
+  
+  $.fusebox.container = {
+    initialize: function() {
+      if($(".fusebox-container").length > 0) { return; }
+      $("body").append($("<div class='fusebox-container'><div class='ui-widget-shadow'></div></div>"));
+    },
+    append: function(element) {
+      $(".fusebox-container").append($("<div class='fusebox ui-widget-content'>").append(element));
+    },
+    show: function(selector) {
+      $(document).trigger("beforeShow.fusebox");
+      if($(".fusebox-container").is(":visible")) {
+        $(".fusebox-container").fadeOut("slow", function() { 
+          displayFuseboxContents(selector);
+        });
+      } else {
+        $(".fusebox-container").hide();
+        displayFuseboxContents(selector);
+      }
+      $(document).trigger("show.fusebox").trigger("afterShow.fusebox");
+    },
+    hide: function() {
+      $(document).trigger("beforeHide.fusebox");
+      $(".fusebox-container").fadeOut("slow");
+      $(document).trigger("hide.fusebox").trigger("afterHide.fusebox");
+    }
+  };
 })(jQuery);
