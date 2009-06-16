@@ -4,13 +4,6 @@
       $(document).trigger("close.fusebox");
       return false;
     },
-    display: function(selector) {
-      $.fusebox.container()
-        .children(".fusebox").hide().end()                                     // hide all children
-        .find(".fusebox:has(" + selector + ")").show().end()                   // display current selector
-        .fadeIn("slow")                                                        // display .fusebox-container
-        .css("left", $(window).width()/2 - ($.fusebox.container().width()/2)); // position correctly
-    },
     bindings: {
       close: function() {
         $(document).unbind("keydown.fusebox");
