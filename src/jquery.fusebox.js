@@ -21,30 +21,30 @@
       }
     }
   };
-  
+
   $.fn.fusebox = function(selector) {
     if($(this).length == 0) { return; }
-    
+
     $.fusebox.container.initialize();
     $("a.fusebox-target").live("click", $.fusebox.bindings.click);
-    
+
     return this.each(function(index) {
-      var $anchor = $(this), $associatedElement, fuseboxSelector;
-      
+      var $anchor = $(this), $fuseboxContent, fuseboxSelector;
+
       $.each($anchor.attr("class").split(/ /), function(idx, cssClass) {
         fuseboxSelector = ".fusebox-" + cssClass;
         if($(fuseboxSelector).length == 1) {
           $anchor.data("fuseboxTargetSelector", fuseboxSelector);
-          $associatedElement = $(fuseboxSelector);
+          $fuseboxContent = $(fuseboxSelector);
           return false;
         }
       });
-      
-      if(typeof($associatedElement) == "undefined") { return; }
-      $.fusebox.container.append($associatedElement);
+
+      if(typeof($fuseboxContent) == "undefined") { return; }
+      $.fusebox.container.append($fuseboxContent);
       $anchor.addClass("fusebox-target");
     });
   };
-  
+
   $(document).bind("close.fusebox", $.fusebox.bindings.close);
 })(jQuery);

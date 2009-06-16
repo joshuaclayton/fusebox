@@ -6,7 +6,7 @@
       .fadeIn("slow")                                       // display .fusebox-container
       .css("left", $(window).width()/2 - ($(".fusebox-container").width()/2)); // position correctly
   };
-  
+
   $.fusebox.container = {
     initialize: function() {
       if($(".fusebox-container").length > 0) { return; }
