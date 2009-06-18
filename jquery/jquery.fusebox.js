@@ -27,19 +27,22 @@
       });
 
       if(typeof($fuseboxContent) == "undefined") { return; }
+
       $.fusebox.container.append($fuseboxContent);
       $element.addClass("fusebox-target");
     });
   };
 })(jQuery);
 
+
 (function($) {
   var fuseboxContainerClass = "fusebox-container",
       displayFuseboxContainer = function(selector) {
         $.fusebox.container()
-          .children(".fusebox").hide().end()                    // hide all children
-          .find(".fusebox:has(" + selector + ")").show().end(); // display current selector
-        $(document).trigger("showContainer.fusebox");           // display fusebox container
+          .children(".fusebox").hide().end()
+          .find(".fusebox:has(" + selector + ")").show().end();
+
+        $(document).trigger("showContainer.fusebox");
       };
 
   $.fusebox.container = function() {
@@ -90,8 +93,13 @@
     return function(event, data) {
       data = data || {};
       $.fusebox.container()
-        [$.fusebox.container.fx[action].fn]($.fusebox.container.fx[action].speed, data.callback || function() {})
-        .css("left", $(window).width()/2 - ($.fusebox.container().width()/2)); // center in the browser
+        [$.fusebox.container.fx[action].fn](    // call the show/hide method
+          $.fusebox.container.fx[action].speed, // set speed
+          data.callback || function() {}        // optional callback
+        )
+        .css({
+          left: $(window).width()/2 - ($.fusebox.container().width()/2) // center
+        });
     };
   };
   
@@ -109,8 +117,12 @@
         $(document)
           .bind("keydown.fusebox", $.fusebox.bindings.keydown)
           .trigger("loading.fusebox");
-        if(typeof($(this).data("fuseboxTargetSelector")) == "undefined") { return true; }
-        $.fusebox.container.show($(this).data("fuseboxTargetSelector"));
+
+        var fuseboxTargetSelector = $(this).data("fuseboxTargetSelector");
+
+        if(typeof(fuseboxTargetSelector) == "undefined") return true;
+
+        $.fusebox.container.show(fuseboxTargetSelector);
         return false;
       }
     }

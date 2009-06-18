@@ -2,9 +2,10 @@
   var fuseboxContainerClass = "fusebox-container",
       displayFuseboxContainer = function(selector) {
         $.fusebox.container()
-          .children(".fusebox").hide().end()                    // hide all children
-          .find(".fusebox:has(" + selector + ")").show().end(); // display current selector
-        $(document).trigger("showContainer.fusebox");           // display fusebox container
+          .children(".fusebox").hide().end()
+          .find(".fusebox:has(" + selector + ")").show().end();
+
+        $(document).trigger("showContainer.fusebox");
       };
 
   $.fusebox.container = function() {

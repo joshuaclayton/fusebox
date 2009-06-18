@@ -18,6 +18,7 @@
       });
 
       if(typeof($fuseboxContent) == "undefined") { return; }
+
       $.fusebox.container.append($fuseboxContent);
       $element.addClass("fusebox-target");
     });
