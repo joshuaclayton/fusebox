@@ -34,7 +34,6 @@
   };
 })(jQuery);
 
-
 (function($) {
   var fuseboxContainerClass = "fusebox-container",
       displayFuseboxContainer = function(selector) {
@@ -45,9 +44,7 @@
         $(document).trigger("showContainer.fusebox");
       };
 
-  $.fusebox.container = function() {
-    return $("." + fuseboxContainerClass);
-  };
+  $.fusebox.container = function() { return $("." + fuseboxContainerClass); };
 
   $.extend($.fusebox.container, {
     initialize: function() {
@@ -80,8 +77,7 @@
       $(document).trigger("show.fusebox").trigger("afterShow.fusebox");
     },
     hide: function() {
-      $(document)
-        .trigger("beforeHide.fusebox")
+      $(document).trigger("beforeHide.fusebox")
         .trigger("hideContainer.fusebox")
         .trigger("hide.fusebox").trigger("afterHide.fusebox");
     }
@@ -95,14 +91,13 @@
       $.fusebox.container()
         [$.fusebox.container.fx[action].fn](    // call the show/hide method
           $.fusebox.container.fx[action].speed, // set speed
-          data.callback || function() {}        // optional callback
-        )
+          data.callback || function() {})       // optional callback
         .css({
           left: $(window).width()/2 - ($.fusebox.container().width()/2) // center
         });
     };
   };
-  
+
   $.extend($.fusebox, {
     bindings: {
       close: function() {
@@ -121,7 +116,6 @@
         var fuseboxTargetSelector = $(this).data("fuseboxTargetSelector");
 
         if(typeof(fuseboxTargetSelector) == "undefined") return true;
-
         $.fusebox.container.show(fuseboxTargetSelector);
         return false;
       }

@@ -5,14 +5,13 @@
       $.fusebox.container()
         [$.fusebox.container.fx[action].fn](    // call the show/hide method
           $.fusebox.container.fx[action].speed, // set speed
-          data.callback || function() {}        // optional callback
-        )
+          data.callback || function() {})       // optional callback
         .css({
           left: $(window).width()/2 - ($.fusebox.container().width()/2) // center
         });
     };
   };
-  
+
   $.extend($.fusebox, {
     bindings: {
       close: function() {
@@ -31,7 +30,6 @@
         var fuseboxTargetSelector = $(this).data("fuseboxTargetSelector");
 
         if(typeof(fuseboxTargetSelector) == "undefined") return true;
-
         $.fusebox.container.show(fuseboxTargetSelector);
         return false;
       }

@@ -8,9 +8,7 @@
         $(document).trigger("showContainer.fusebox");
       };
 
-  $.fusebox.container = function() {
-    return $("." + fuseboxContainerClass);
-  };
+  $.fusebox.container = function() { return $("." + fuseboxContainerClass); };
 
   $.extend($.fusebox.container, {
     initialize: function() {
@@ -43,8 +41,7 @@
       $(document).trigger("show.fusebox").trigger("afterShow.fusebox");
     },
     hide: function() {
-      $(document)
-        .trigger("beforeHide.fusebox")
+      $(document).trigger("beforeHide.fusebox")
         .trigger("hideContainer.fusebox")
         .trigger("hide.fusebox").trigger("afterHide.fusebox");
     }
