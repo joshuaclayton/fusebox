@@ -14,27 +14,29 @@
     <script>
       $(document).ready(function() {
         $("a[rel=fusebox]").fusebox();
+        $("a.loaded-remotely").fusebox("h1:eq(0)");
+        $("a[rel=fusebox-remote]").fusebox("h1:eq(0)", {cache: true});
         $(".bound-event").click(function() {
           $(this).css({color: "red"});
-        })
+        });
+        $(".bound-header").live("click", function() {
+          $(this).css({color: "red"});
+        });
         $(".fusebox-close").live("click", function() {
           $.fusebox.close();
         });
       });
     </script>
     <style type="text/css">
-      body {
-        background: #fdd;
-      }
-      .col-12 {
-        width: 650px;
-      }
+      body { background: #fdd; }
+      .col-12 { width: 650px; }
     </style>
   </head>
   <body>
-    <h1>Fusebox</h1>
+    <h1 class="bound-header">Fusebox</h1>
     <a href="test.html" rel="fusebox">This should not open a fusebox</a>
     <a href="test.html" rel="fusebox" class="item-list clean">This is my content</a>
+    <a href="test.html" rel="fusebox" class="item-list">This is the same content</a>
     <div class="fusebox-item-list">
       <ul>
         <li>test</li>
@@ -45,7 +47,10 @@
       <h1 class="bound-event">This should be bound correctly</h1>
       <p class="fusebox-close">Close</p>
     </div>
-    
+    <a href="test.html" rel="fusebox-remote" class="loaded-remotely">This loads remote content</a>
+    <div class="fusebox-loaded-remotely"></div>
+    <a href="test.html" rel="fusebox-remote" class="loaded-remotely-2">This loads remote content without refreshing</a>
+    <div class="fusebox-loaded-remotely-2"></div>
     <a href="index.html" rel="fusebox" class="item-list-2 clean">This is secondary content</a>
     <div class="fusebox-item-list-2 col-12">
       <div style="float: left">

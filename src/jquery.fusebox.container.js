@@ -1,11 +1,20 @@
 (function($) {
   var fuseboxContainerClass = "fusebox-container",
       displayFuseboxContainer = function(selector) {
-        $.fusebox.container()
-          .children(".fusebox").hide().end()
-          .find(".fusebox:has(" + selector + ")").show().end();
+        var $element = $.fusebox.container().find(selector, ".fusebox"),
+            showElement = function() {
+              $element.parents(".fusebox").show();
+              $(document).trigger("showContainer.fusebox");
+            };
 
-        $(document).trigger("showContainer.fusebox");
+        $.fusebox.container().children(".fusebox").hide();
+
+        if(typeof($element.data("fuseboxData")) == "undefined" ||
+          ($element.data("fuseboxDataCache") === true && $element.html() != "")) {
+          showElement();
+        } else {
+          $element.load($element.data("fuseboxData"), function() { showElement(); });
+        }
       };
 
   $.fusebox.container = function() { return $("." + fuseboxContainerClass); };
